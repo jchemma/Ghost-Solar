@@ -1,6 +1,6 @@
 package com.gsu.gg.to;
 
-public class Class {
+public class Course {
 	private int crn; 
 	private String name;
 	private int creditHours;
@@ -55,7 +55,7 @@ public class Class {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Class other = (Class) obj;
+		Course other = (Course) obj;
 		if (creditHours != other.creditHours)
 			return false;
 		if (crn != other.crn)

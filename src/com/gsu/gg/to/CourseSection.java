@@ -1,6 +1,6 @@
 package com.gsu.gg.to;
 
-public class ClassSection {
+public class CourseSection {
 	private int crn;
 	private int sectionID;
 	private String dayOfTheWeek;
@@ -47,7 +47,7 @@ public class ClassSection {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClassSection other = (ClassSection) obj;
+		CourseSection other = (CourseSection) obj;
 		if (crn != other.crn)
 			return false;
 		if (dayOfTheWeek == null) {

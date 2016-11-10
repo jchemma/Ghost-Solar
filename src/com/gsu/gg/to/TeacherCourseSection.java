@@ -1,6 +1,6 @@
 package com.gsu.gg.to;
 
-public class TeacherClassSection {
+public class TeacherCourseSection {
 	private String StudentID;
 	private int crn;
 	private int sectionID;
@@ -39,7 +39,7 @@ public class TeacherClassSection {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TeacherClassSection other = (TeacherClassSection) obj;
+		TeacherCourseSection other = (TeacherCourseSection) obj;
 		if (StudentID == null) {
 			if (other.StudentID != null)
 				return false;
