@@ -1,11 +1,12 @@
 package com.gsu.gg.to;
 
-public class Teacher {
+public class User {
 
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
 	private String password;
+	private int personType;
 	
 	public String getFirstName() {
 		return firstName;
@@ -49,7 +50,7 @@ public class Teacher {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Teacher other = (Teacher) obj;
+		User other = (User) obj;
 		if (emailAddress == null) {
 			if (other.emailAddress != null)
 				return false;
@@ -74,7 +75,7 @@ public class Teacher {
 	}
 	@Override
 	public String toString() {
-		return "Teacher [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
 				+ ", password=" + password + "]";
 	}
 	

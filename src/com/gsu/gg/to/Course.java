@@ -5,7 +5,7 @@ public class Course {
 	private String name;
 	private int creditHours;
 	private String description;
-	private String prequistes;
+	private String prerequisites;
 	public int getCrn() {
 		return crn;
 	}
@@ -30,11 +30,11 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPrequistes() {
-		return prequistes;
+	public String getPrerequisites() {
+		return prerequisites;
 	}
-	public void setPrequistes(String prequistes) {
-		this.prequistes = prequistes;
+	public void setPrerequisites(String prerequisites) {
+		this.prerequisites = prerequisites;
 	}
 	@Override
 	public int hashCode() {
@@ -44,7 +44,7 @@ public class Course {
 		result = prime * result + crn;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((prequistes == null) ? 0 : prequistes.hashCode());
+		result = prime * result + ((prerequisites == null) ? 0 : prerequisites.hashCode());
 		return result;
 	}
 	@Override
@@ -70,18 +70,19 @@ public class Course {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (prequistes == null) {
-			if (other.prequistes != null)
+		if (prerequisites == null) {
+			if (other.prerequisites != null)
 				return false;
-		} else if (!prequistes.equals(other.prequistes))
+		} else if (!prerequisites.equals(other.prerequisites))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Class [crn=" + crn + ", name=" + name + ", creditHours=" + creditHours + ", description=" + description
-				+ ", prequistes=" + prequistes + "]";
-	} 
-
+		return "Course [crn=" + crn + ", name=" + name + ", creditHours=" + creditHours + ", description=" + description
+				+ ", prerequisites=" + prerequisites + "]";
+	}
+	
+	
 	
 }

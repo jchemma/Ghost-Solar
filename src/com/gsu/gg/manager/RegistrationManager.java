@@ -1,10 +1,33 @@
 package com.gsu.gg.manager;
 
+import java.util.List;
+
 import com.gsu.gg.dao.RegistrationDAO;
-import com.gsu.gg.to.Student;
+import com.gsu.gg.to.CourseSection;
+import com.gsu.gg.to.User;
 
 public class RegistrationManager {
 
+	//Login a person
+	public static User loginUser(String userName, String password) throws Exception{
+		//Try to find the user in the db.
+		User user = RegistrationDAO.getUser(userName);
+		
+		if(user == null){
+			throw new Exception("Unable to find the user " + userName + ".");
+		}
+		
+		//Authenticate the user.
+		if(!password.equals(user.getPassword())){
+			throw new Exception("The password is incorrect.");
+		}
+	
+		return user;
+	}
+	
+	public static List<CourseSection> getCourseSectionsForUser(String user){
+		return RegistrationDAO.getCoursesForUser(user);
+	}
 	//Create a Student
 	
 	//Create a Teacher
@@ -14,8 +37,8 @@ public class RegistrationManager {
 	//Update a Teacher
 	
 	//Get Student Info by email
-	public static Student getStudentInformation(String emailAddress){
-		return RegistrationDAO.getStudentInformation(emailAddress);
+	public static User getUser(String emailAddress){
+		return RegistrationDAO.getUser(emailAddress);
 	}
 	
 	

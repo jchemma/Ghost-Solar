@@ -1,6 +1,6 @@
 package com.gsu.gg.to;
 
-public class Sections {
+public class Section {
 	private int sectionID;
 	private int capacity;
 	private String location;
@@ -47,7 +47,7 @@ public class Sections {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sections other = (Sections) obj;
+		Section other = (Section) obj;
 		if (capacity != other.capacity)
 			return false;
 		if (instructor == null) {

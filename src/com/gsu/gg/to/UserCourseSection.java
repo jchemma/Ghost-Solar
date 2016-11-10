@@ -1,14 +1,16 @@
 package com.gsu.gg.to;
 
-public class TeacherCourseSection {
-	private String StudentID;
+public class UserCourseSection {
+	private String userID;
 	private int crn;
 	private int sectionID;
-	public String getStudentID() {
-		return StudentID;
+	
+	
+	public String getUserID() {
+		return userID;
 	}
-	public void setStudentID(String studentID) {
-		StudentID = studentID;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 	public int getCrn() {
 		return crn;
@@ -26,9 +28,9 @@ public class TeacherCourseSection {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((StudentID == null) ? 0 : StudentID.hashCode());
 		result = prime * result + crn;
 		result = prime * result + sectionID;
+		result = prime * result + ((userID == null) ? 0 : userID.hashCode());
 		return result;
 	}
 	@Override
@@ -39,21 +41,21 @@ public class TeacherCourseSection {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TeacherCourseSection other = (TeacherCourseSection) obj;
-		if (StudentID == null) {
-			if (other.StudentID != null)
-				return false;
-		} else if (!StudentID.equals(other.StudentID))
-			return false;
+		UserCourseSection other = (UserCourseSection) obj;
 		if (crn != other.crn)
 			return false;
 		if (sectionID != other.sectionID)
+			return false;
+		if (userID == null) {
+			if (other.userID != null)
+				return false;
+		} else if (!userID.equals(other.userID))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "TeacherClassSection [StudentID=" + StudentID + ", crn=" + crn + ", sectionID=" + sectionID + "]";
+		return "UserCourseSection [userID=" + userID + ", crn=" + crn + ", sectionID=" + sectionID + "]";
 	}
 	
 }

@@ -1,5 +1,8 @@
 package com.gsu.gg.ui;
 
+import com.gsu.gg.manager.RegistrationManager;
+import com.gsu.gg.to.User;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class LogIn{
-    boolean loggedIn;
+    private boolean loggedIn;
+    private User user = null;
+    
     public boolean display(){
         Stage window = new Stage();
         GridPane grid = new GridPane();
@@ -42,6 +47,14 @@ public class LogIn{
     }
     
     private boolean check(String username, String password){
-        return username.equals("admin") && password.equals("password");
+    	
+    	try {
+			this.user = RegistrationManager.loginUser(username, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+    	return true;
     }
 }
