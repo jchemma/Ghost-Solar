@@ -1,23 +1,40 @@
 package com.gsu.gg.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.gsu.gg.to.CourseSection;
 import com.gsu.gg.to.User;
+import com.gsu.gg.util.DBUtil;
 
 public class RegistrationDAO {
 
-	public static User getUser(String emailAddress){
-		User person = new User();
+	private static final String GET_USER_SQL = "SELECT EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PASSWORD FROM USER WHERE EMAIL_ADDRESS = ?";
+	
+	public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException{
 		
-		//person.setEmailAddress("kpierre5@student.gsu.edu");
-		person.setEmailAddress(emailAddress);
-		person.setFirstName("Ken");
-		person.setLastName("Pierre");
-		person.setPassword("password");
+		Connection connection = null;
+		PreparedStatement statement = null;
+		User user = null;
 		
-		return person;
+		connection = DBUtil.getConnection();
+		statement = connection.prepareStatement(GET_USER_SQL);
+		ResultSet rs = statement.executeQuery();
+		
+		if (rs.next()) {
+			user = new User();
+			
+			user.setEmailAddress(rs.getString("email_address"));
+			user.setFirstName(rs.getString("first_name"));
+			user.setLastName(rs.getString("last_name"));
+			user.setPassword(rs.getString("password"));
+		}
+		
+		return user;
 	}
 	
 	public static List<CourseSection> getCoursesForUser(String personId){

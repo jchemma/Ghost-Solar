@@ -1,5 +1,6 @@
 package com.gsu.gg.manager;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.gsu.gg.dao.RegistrationDAO;
@@ -37,8 +38,12 @@ public class RegistrationManager {
 	//Update a Teacher
 	
 	//Get Student Info by email
-	public static User getUser(String emailAddress){
-		return RegistrationDAO.getUser(emailAddress);
+	public static User getUser(String emailAddress) throws Exception{
+		try {
+			return RegistrationDAO.getUser(emailAddress);
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new Exception(e.getMessage(),e);
+		}
 	}
 	
 	
