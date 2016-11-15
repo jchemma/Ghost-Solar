@@ -33,6 +33,14 @@ public class LogIn{
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
             loggedIn = check(userNameField.getText(), passwordField.getText());
+            if(loggedIn){
+            	try {
+					user = RegistrationManager.loginUser(userName.getText(), password.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
             window.close();
         });
         grid.add(submit,0,2);
@@ -57,4 +65,8 @@ public class LogIn{
 
     	return true;
     }
+
+	public User getUser() {
+		return user;
+	}
 }
