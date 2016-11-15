@@ -13,9 +13,19 @@ import com.gsu.gg.util.DBUtil;
 
 public class RegistrationDAO {
 
-	private static final String GET_USER_SQL = "SELECT EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PASSWORD FROM USER WHERE EMAIL_ADDRESS = ?";
+	private static final String GET_USER_SQL = 
+			"SELECT EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PASSWORD "
+			+ "FROM USER "
+			+ "WHERE EMAIL_ADDRESS = ?";
 	
-	public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException{
+	private static final String GET_COURSES_FOR_USERS = 
+			"SELECT a.CRN, a.Name, a.Credit_Hours, a.Description, a.Department, a.Prerequisites, a.SECTION_ID, a.DAY_OF_WEEK, a.CLASS_TIME, a.STATUS "
+			+ "FROM course a, "
+			+ "student_course b "
+			+ "WHERE a.CRN = B.CRN "
+			+ "AND b.student_id = ? ";
+	
+			public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException{
 		
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -23,6 +33,8 @@ public class RegistrationDAO {
 		
 		connection = DBUtil.getConnection();
 		statement = connection.prepareStatement(GET_USER_SQL);
+		statement.setString(1, emailAddress);
+		
 		ResultSet rs = statement.executeQuery();
 		
 		if (rs.next()) {
@@ -37,35 +49,33 @@ public class RegistrationDAO {
 		return user;
 	}
 	
-	public static List<CourseSection> getCoursesForUser(String personId){
+	public static List<CourseSection> getCoursesForUser(String userId) throws SQLException, ClassNotFoundException{
 		
 		List<CourseSection> courseList = new ArrayList<>();
+	
+		Connection connection = null;
+		PreparedStatement statement = null;
+		connection = DBUtil.getConnection();
+		statement = connection.prepareStatement(GET_COURSES_FOR_USERS);
+		statement.setString(1, userId);
 		
-		CourseSection course1 = new CourseSection();
-		course1.setCreditHours(5);
-		course1.setCrn(12);
-		course1.setDayOfTheWeek("Mon");
-		course1.setDescription("Course 1");
-		course1.setName("Course 1");
-		course1.setPrerequisites("Prereq 1");
-		course1.setSectionID(1);
-		course1.setTime("1:00 PM - 3:00 PM");
-		course1.setStatus("A");
+		ResultSet rs = statement.executeQuery();
 		
-		CourseSection course2 = new CourseSection();
-		course2.setCreditHours(5);
-		course2.setCrn(12);
-		course2.setDayOfTheWeek("Mon");
-		course2.setDescription("Course 1");
-		course2.setName("Course 1");
-		course2.setPrerequisites("Prereq 1");
-		course2.setSectionID(1);
-		course2.setTime("1:00 PM - 3:00 PM");
-		course2.setStatus("W");
-		
-		courseList.add(course1);
-		courseList.add(course2);
+		while (rs.next()) {
+			CourseSection course = new CourseSection();
+			course.setCreditHours(rs.getInt("Credit_Hours"));
+			course.setCrn(rs.getInt("CRN"));
+			course.setDayOfTheWeek(rs.getString("Day_Of_Week"));
+			course.setDescription(rs.getString("Description"));
+			course.setName(rs.getString("Name"));
+			course.setPrerequisites(rs.getString("Prerequisites"));
+			course.setSectionID(rs.getInt("Section_ID"));
+			course.setTime(rs.getString("Class_Time"));
+			course.setStatus(rs.getString("Status"));
+			courseList.add(course);
+		}
 		
 		return courseList;
 	}
+	
 }

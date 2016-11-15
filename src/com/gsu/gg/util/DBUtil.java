@@ -10,7 +10,7 @@ public class DBUtil {
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
     	
-    	Class.forName("com.mysql.jdbc.Driver");
+    	Class.forName("org.sqlite.JDBC");
     	Connection connection = null;
     	connection = DriverManager.getConnection("jdbc:sqlite:/Users/Kpp2/Documents/GGDatabase/GGDatabase","", "");
     	

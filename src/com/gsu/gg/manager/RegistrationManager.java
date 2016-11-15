@@ -26,7 +26,7 @@ public class RegistrationManager {
 		return user;
 	}
 	
-	public static List<CourseSection> getCourseSectionsForUser(String user){
+	public static List<CourseSection> getCourseSectionsForUser(String user) throws Exception {
 		return RegistrationDAO.getCoursesForUser(user);
 	}
 	//Create a Student
