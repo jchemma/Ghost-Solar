@@ -12,7 +12,11 @@ import com.gsu.gg.to.User;
 import com.gsu.gg.util.DBUtil;
 
 public class RegistrationDAO {
-	private static final String INSERT_COURSE_FOR_USER = "INSERT INTO User_Course (USER_ID,CRN) VALUES (?,?) ";
+	
+	private static final String INSERT_USER = "INSERT INTO USER (first_name,last_name,email_address,password,access_type) " +
+			"values (?,?,?,?,?)";
+	
+	private static final String INSERT_COURSE_FOR_USER = "INSERT INTO User_Course (USER_ID,CRN) VALUES (?,?)";
 
 	private static final String GET_ALL_COURSES = "select a.CRN, a.Name, a.Credit_Hours, a.Description, a.Department, a.Prerequisites, a.SECTION_ID, a.DAY_OF_WEEK, a.CLASS_TIME, a.STATUS "
 			+ "from course a ";
@@ -118,5 +122,22 @@ public class RegistrationDAO {
 			statement.executeUpdate();
 		}
 		
+	}
+
+	public static void createUser(User user) throws ClassNotFoundException, SQLException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		connection = DBUtil.getConnection();
+		
+		statement = connection.prepareStatement(INSERT_USER);
+		
+		statement.setString(1, user.getFirstName());
+		statement.setString(2, user.getLastName());
+		statement.setString(3, user.getEmailAddress());
+		statement.setString(4, user.getPassword());
+		statement.setInt(5, user.getAccessType());
+		
+		statement.executeUpdate();
 	}
 }

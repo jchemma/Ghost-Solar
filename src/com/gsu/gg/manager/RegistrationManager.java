@@ -30,13 +30,17 @@ public class RegistrationManager {
 	public static List<CourseSection> getCourseSectionsForUser(String user) throws Exception {
 		return RegistrationDAO.getCoursesForUser(user);
 	}
-	//Create a Student
 	
-	//Create a Teacher
+	//Create a User
+	public static void createUser(User user) throws Exception{
+		try {
+			RegistrationDAO.createUser(user);
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new Exception("Unable to create user.", e);
+		}
+	}
 	
-	//Update a Student
 	
-	//Update a Teacher
 	
 	//Get Student Info by email
 	public static User getUser(String emailAddress) throws Exception{
@@ -81,13 +85,20 @@ public class RegistrationManager {
 	//Get Class and Section By Teacher
 	
 	public static void main(String[] args){
-		List<Integer> crnList = new ArrayList<>();
-		crnList.add(2);
-		crnList.add(3);
+		User user = new User();
+		
+		user.setFirstName("Kyle");
+		user.setLastName("Dye");
+		user.setEmailAddress("kyledye@bellsouth.net");
+		user.setPassword("password");
+		user.setAccessType(2);
 		
 		try {
-			RegistrationManager.createCoursesForUser("kpierre5@student.gsu.edu", crnList);
-		} catch (Exception e) {
+			RegistrationDAO.createUser(user);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
