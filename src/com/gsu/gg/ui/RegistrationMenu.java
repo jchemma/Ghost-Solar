@@ -1,5 +1,8 @@
 package com.gsu.gg.ui;
 import java.io.IOException;
+
+import com.gsu.gg.to.User;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,6 +10,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class RegistrationMenu {
+	
+	User user;
+	
+	public RegistrationMenu(User user){
+		this.user = user;
+	}
+	
     Stage window;
     public Stage display(){
         Stage window = new Stage();

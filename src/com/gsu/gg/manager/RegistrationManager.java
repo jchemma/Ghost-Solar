@@ -50,8 +50,12 @@ public class RegistrationManager {
 	//Get Teacher Info by email
 	
 	//Get All Classes
+	public static List<CourseSection> getAllCourses() throws Exception {
+		return RegistrationDAO.getAllCourses();
+	}
 	
 	//Get Classes By CRN
+	
 	
 	//Get Classes By Name
 	

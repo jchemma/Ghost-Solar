@@ -1,11 +1,14 @@
 package com.gsu.gg.ui;
 
+import java.util.List;
+
+import com.gsu.gg.dao.RegistrationDAO;
 import com.gsu.gg.manager.RegistrationManager;
+import com.gsu.gg.to.CourseSection;
 import com.gsu.gg.to.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -20,19 +23,28 @@ public class LogIn{
         GridPane grid = new GridPane();
         window.setTitle("Log In");
         
-        Label userName = new Label("Username: ");
-        grid.add(userName, 0, 0);
-        Label password = new Label("Password");
-        grid.add(password, 0, 1);
-        
         TextField userNameField = new TextField();
-        grid.add(userNameField,1,0);
+        userNameField.setPromptText("Username");
+        GridPane.setColumnSpan(userNameField, 2);
+        grid.add(userNameField,0,0);
+        
+        
         PasswordField passwordField = new PasswordField();
-        grid.add(passwordField, 1, 1);
+        passwordField.setPromptText("Password");
+        GridPane.setColumnSpan(passwordField, 2);
+        grid.add(passwordField, 0, 1);
         
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
             loggedIn = check(userNameField.getText(), passwordField.getText());
+            if(loggedIn){
+            	try {
+					user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
             window.close();
         });
         grid.add(submit,0,2);
@@ -50,6 +62,8 @@ public class LogIn{
     	
     	try {
 			this.user = RegistrationManager.loginUser(username, password);
+			List<CourseSection> courselist = RegistrationManager.getAllCourses();
+			;;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -57,4 +71,8 @@ public class LogIn{
 
     	return true;
     }
+
+	public User getUser() {
+		return user;
+	}
 }
