@@ -32,7 +32,7 @@ public class RegistrationMenu {
         checkRegistrationStatus.setMinWidth(600);
         
         Button addDropWithdrawClasses = new Button("Add/Drop/Withdraw Classes");
-        addDropWithdrawClasses.setOnAction(e -> new AddDropWithdrawClasses().display());
+        addDropWithdrawClasses.setOnAction(e -> new AddDropWithdrawClasses(user).display());
         grid.add(addDropWithdrawClasses,0,1);
         addDropWithdrawClasses.setMinWidth(600);
         

@@ -7,6 +7,7 @@ public class User {
 	private String emailAddress;
 	private String password;
 	private int personType;
+	private int[] crn;
 	
 	public String getFirstName() {
 		return firstName;
@@ -31,6 +32,9 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int[] getCRN(){
+		return crn;
 	}
 	@Override
 	public int hashCode() {

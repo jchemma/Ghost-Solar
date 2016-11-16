@@ -5,7 +5,21 @@ public class Course {
 	private String name;
 	private int creditHours;
 	private String description;
-	private String prerequisites;
+	private Course[] prerequisites;
+	
+	public Course(int crn){
+		this.crn = crn;
+		
+	}
+	
+	public Course(int crn, String name, int creditHours, String description, Course[] prerequsites){
+		this.crn = crn;
+		this.name = name;
+		this.creditHours = creditHours;
+		this.description = description;
+		this.prerequisites = prerequisites;
+	}
+
 	public int getCrn() {
 		return crn;
 	}
@@ -30,10 +44,10 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPrerequisites() {
+	public Course[] getPrerequisites() {
 		return prerequisites;
 	}
-	public void setPrerequisites(String prerequisites) {
+	public void setPrerequisites(Course[] prerequisites) {
 		this.prerequisites = prerequisites;
 	}
 	@Override
