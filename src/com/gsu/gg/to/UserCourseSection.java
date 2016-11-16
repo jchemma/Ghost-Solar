@@ -5,6 +5,12 @@ public class UserCourseSection {
 	private int crn;
 	private int sectionID;
 	
+	public UserCourseSection(String userID, int crn, int sectionID){
+		this.userID = userID;
+		this.crn = crn;
+		this.sectionID = sectionID;
+	}
+	
 	
 	public String getUserID() {
 		return userID;
