@@ -12,12 +12,9 @@ public class DBUtil {
     	
     	Class.forName("org.sqlite.JDBC");
     	Connection connection = null;
-<<<<<<< HEAD
+
     	String projectDirectory = System.getProperty("user.dir");
     	connection = DriverManager.getConnection("jdbc:sqlite:" + projectDirectory + "/GGDatabase","", "");
-=======
-    	connection = DriverManager.getConnection("jdbc:sqlite:./GGDatabase","", "");
->>>>>>> 6e424196c72b89c6451402ff35db7c36c3b89c66
     	
         return connection;
     }
