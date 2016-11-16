@@ -1,6 +1,7 @@
 package com.gsu.gg.ui;
 
 import com.gsu.gg.to.User;
+import com.gsu.gg.ui.admin.AdminMenu;
 
 import javafx.application.Application;
 import javafx.scene.control.Alert;
@@ -14,6 +15,7 @@ public class Main extends Application{
 	public static void main(String[]args){
 		launch(args);
 	}
+        @Override
 	public void start(Stage window){
 		LogIn login = new LogIn();
 		int counter = 0;
@@ -37,6 +39,12 @@ public class Main extends Application{
 				System.exit(0);
 			}
 		}
-		new RegistrationMenu(user).display();
+		switch(user.getAccessType()){
+                    case 1:
+                        new AdminMenu(user).display();
+                        break;
+                    case 2:
+                        new RegistrationMenu(user).display();
+                }
 	}
 }

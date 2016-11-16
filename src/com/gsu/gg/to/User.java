@@ -7,6 +7,16 @@ public class User {
 	private String emailAddress;
 	private String password;
 	private int accessType;
+        
+        public User(){}
+
+        public User(String firstName, String lastName, String email, String password, int accessLevel) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.emailAddress = email;
+            this.password = password;
+            this.accessType = accessLevel;
+        }
 	
 	public String getFirstName() {
 		return firstName;

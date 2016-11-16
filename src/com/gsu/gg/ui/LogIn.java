@@ -1,10 +1,6 @@
 package com.gsu.gg.ui;
 
-import java.util.List;
-
-import com.gsu.gg.dao.RegistrationDAO;
 import com.gsu.gg.manager.RegistrationManager;
-import com.gsu.gg.to.CourseSection;
 import com.gsu.gg.to.User;
 
 import javafx.scene.Scene;
@@ -36,14 +32,11 @@ public class LogIn{
         
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
-            loggedIn = check(userNameField.getText(), passwordField.getText());
-            if(loggedIn){
-            	try {
-					user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+            try {
+                user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
             window.close();
         });
@@ -57,20 +50,7 @@ public class LogIn{
         window.showAndWait();
         return loggedIn;
     }
-    
-    private boolean check(String username, String password){
-    	
-    	try {
-			this.user = RegistrationManager.loginUser(username, password);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-
-    	return true;
+    public User getUser(){
+        return user;
     }
-
-	public User getUser() {
-		return user;
-	}
 }
