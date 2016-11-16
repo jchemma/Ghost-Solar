@@ -62,8 +62,6 @@ public class LogIn{
     	
     	try {
 			this.user = RegistrationManager.loginUser(username, password);
-			List<CourseSection> courselist = RegistrationManager.getAllCourses();
-			;;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

@@ -17,7 +17,7 @@ public class RegistrationDAO {
 			+ "from course a ";
 
 	private static final String GET_USER_SQL = 
-			"SELECT EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PASSWORD "
+			"SELECT EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PASSWORD, ACCESS_TYPE "
 			+ "FROM USER "
 			+ "WHERE EMAIL_ADDRESS = ?";
 	
@@ -47,6 +47,7 @@ public class RegistrationDAO {
 			user.setFirstName(rs.getString("first_name"));
 			user.setLastName(rs.getString("last_name"));
 			user.setPassword(rs.getString("password"));
+			user.setAccessType(rs.getInt("access_type"));
 		}
 		
 		return user;

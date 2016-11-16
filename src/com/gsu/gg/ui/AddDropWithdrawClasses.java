@@ -34,10 +34,10 @@ public class AddDropWithdrawClasses{
 	
 	public AddDropWithdrawClasses(User user){
 		this.user = user;;
-		for(int crn : user.getCRN()){
-			Course c = new Course(crn);
-			course.add(c);
-		}
+//		for(int crn : user.getCRN()){
+//			Course c = new Course(crn);
+//			course.add(c);
+//		}
 		
 		
 	}

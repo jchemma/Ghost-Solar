@@ -6,8 +6,7 @@ public class User {
 	private String lastName;
 	private String emailAddress;
 	private String password;
-	private int personType;
-	private int[] crn;
+	private int accessType;
 	
 	public String getFirstName() {
 		return firstName;
@@ -32,14 +31,19 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}	
+	
+	public int getAccessType() {
+		return accessType;
 	}
-	public int[] getCRN(){
-		return crn;
+	public void setAccessType(int accessType) {
+		this.accessType = accessType;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + accessType;
 		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -55,6 +59,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (accessType != other.accessType)
+			return false;
 		if (emailAddress == null) {
 			if (other.emailAddress != null)
 				return false;
@@ -79,8 +85,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
-				+ ", password=" + password + "]";
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
+				+ ", password=" + password + ", accessType=" + accessType + "]";
 	}
 	
 	
