@@ -11,7 +11,8 @@ import com.gsu.gg.to.User;
 public class RegistrationManager {
 
 	//Login a person
-	public static User loginUser(String userName, String password) throws Exception{
+
+    public static User loginUser(String userName, String password) throws Exception{
 		//Try to find the user in the db.
 		User user = RegistrationDAO.getUser(userName);
 		

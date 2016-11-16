@@ -49,6 +49,7 @@ public class RegistrationDAO {
 			user.setAccessType(rs.getInt("access_type"));
 		}
 
+                connection.close();
 		return user;
 	}
 
@@ -78,6 +79,7 @@ public class RegistrationDAO {
 			courseList.add(course);
 		}
 
+                connection.close();
 		return courseList;
 	}
 
@@ -106,6 +108,7 @@ public class RegistrationDAO {
 			courseList.add(course);
 		}
 
+                connection.close();
 		return courseList;
 	}
 
@@ -121,23 +124,24 @@ public class RegistrationDAO {
 			
 			statement.executeUpdate();
 		}
-		
+		connection.close();
 	}
 
 	public static void createUser(User user) throws ClassNotFoundException, SQLException {
 
-		Connection connection = null;
-		PreparedStatement statement = null;
-		connection = DBUtil.getConnection();
-		
-		statement = connection.prepareStatement(INSERT_USER);
-		
-		statement.setString(1, user.getFirstName());
-		statement.setString(2, user.getLastName());
-		statement.setString(3, user.getEmailAddress());
-		statement.setString(4, user.getPassword());
-		statement.setInt(5, user.getAccessType());
-		
-		statement.executeUpdate();
+            Connection connection = null;
+            PreparedStatement statement = null;
+            connection = DBUtil.getConnection();
+
+            statement = connection.prepareStatement(INSERT_USER);
+
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmailAddress());
+            statement.setString(4, user.getPassword());
+            statement.setInt(5, user.getAccessType());
+
+            statement.executeUpdate();
+                connection.close();
 	}
 }

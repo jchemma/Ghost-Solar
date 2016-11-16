@@ -11,8 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class LogIn{
-    private boolean loggedIn;
-    private User user = null;
+    private User user;
     
     public boolean display(){
         Stage window = new Stage();
@@ -48,7 +47,7 @@ public class LogIn{
         Scene scene = new Scene(grid);
         window.setScene(scene);
         window.showAndWait();
-        return loggedIn;
+        return user!=null;
     }
     public User getUser(){
         return user;

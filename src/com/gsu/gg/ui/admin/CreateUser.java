@@ -7,6 +7,8 @@ package com.gsu.gg.ui.admin;
 
 import com.gsu.gg.manager.RegistrationManager;
 import com.gsu.gg.to.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,13 +41,18 @@ public class CreateUser {
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
             User user = new User(firstName.getText(), lastName.getText(), email.getText(),password.getText(),accessLevel.getValue());
-            RegistrationManager.createUser(user);
+            try {
+                RegistrationManager.createUser(user);
+            } catch (Exception ex) {
+                Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            window.close();
         });
         Button cancel = new Button("Cancel");
         cancel.setOnAction(e -> window.close());
         
         VBox layout = new VBox();
-        layout.getChildren().addAll(firstName, lastName, password, email, accessLevel);
+        layout.getChildren().addAll(firstName, lastName, password, email, accessLevel,submit, cancel);
         
         Scene scene = new Scene(layout);
         window.setScene(scene);
