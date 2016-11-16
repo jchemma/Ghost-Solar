@@ -1,6 +1,7 @@
 package com.gsu.gg.manager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.gsu.gg.dao.RegistrationDAO;
@@ -54,6 +55,14 @@ public class RegistrationManager {
 		return RegistrationDAO.getAllCourses();
 	}
 	
+	//Create Courses for a user.
+	public static void createCoursesForUser(String userId, List<Integer> crnList) throws Exception{
+		try {
+			RegistrationDAO.createCoursesForUser(userId, crnList);
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new Exception("Unable to create courses for users.", e);
+		}
+	}
 	//Get Classes By CRN
 	
 	
@@ -70,4 +79,17 @@ public class RegistrationManager {
 	//Get Class and Section By Student
 	
 	//Get Class and Section By Teacher
+	
+	public static void main(String[] args){
+		List<Integer> crnList = new ArrayList<>();
+		crnList.add(2);
+		crnList.add(3);
+		
+		try {
+			RegistrationManager.createCoursesForUser("kpierre5@student.gsu.edu", crnList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
