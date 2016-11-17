@@ -1,5 +1,5 @@
 package com.gsu.gg.ui;
-import com.gsu.gg.dao.RegistrationDAO;
+
 import com.gsu.gg.manager.RegistrationManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -140,6 +140,9 @@ public class AddDropWithdrawClasses{
         Button submitChanges = new Button("Submit Changes");
         Button classSearch = new Button("Class Search");
         Button reset = new Button("Reset");
+        Button scheduleBuilder = new Button("Schedule Builder");
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> window.close());
         
         //miscallaneous labels
         Label totalCreditHoursLabel = new Label("Total Credit Hours: ");
@@ -177,7 +180,7 @@ public class AddDropWithdrawClasses{
         
         //layout for buttons
         HBox buttonLayout = new HBox();
-        buttonLayout.getChildren().addAll(submitChanges, classSearch, reset);
+        buttonLayout.getChildren().addAll(submitChanges, classSearch, reset,scheduleBuilder,cancel);
         
         //layout for entire page
         VBox pageLayout = new VBox();
