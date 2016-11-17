@@ -3,6 +3,8 @@ package com.gsu.gg.ui;
 import com.gsu.gg.manager.RegistrationManager;
 import com.gsu.gg.to.User;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -22,6 +24,10 @@ public class LogIn{
         userNameField.setPromptText("Username");
         GridPane.setColumnSpan(userNameField, 2);
         grid.add(userNameField,0,0);
+        grid.setHgap(20);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.setAlignment(Pos.CENTER);
         
         
         PasswordField passwordField = new PasswordField();
@@ -44,7 +50,7 @@ public class LogIn{
         cancel.setOnAction(e ->System.exit(0));
         grid.add(cancel,1,2);
         
-        Scene scene = new Scene(grid);
+        Scene scene = new Scene(grid, 300, 150);
         window.setScene(scene);
         window.showAndWait();
         return user!=null;

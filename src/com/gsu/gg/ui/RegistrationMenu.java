@@ -3,6 +3,8 @@ import java.io.IOException;
 
 import com.gsu.gg.to.User;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,6 +43,7 @@ public class RegistrationMenu {
             String semester = new SelectTerm().display();
         });
         grid.add(lookUpClassesToAdd,0,2);
+        lookUpClassesToAdd.setOnAction(e -> new LookUpClassesToAdd().display());
         lookUpClassesToAdd.setMinWidth(600);
         
         Button buyTextBooksOnline = new Button("Buy Textbooks Online");
@@ -60,7 +63,7 @@ public class RegistrationMenu {
         grid.add(viewWeeklySchedule,0,6);
         viewWeeklySchedule.setMinWidth(600);
         
-        Button viewBasicCourseInformation = new Button("View Bassic Course Information");
+        Button viewBasicCourseInformation = new Button("View Basic Course Information");
         grid.add(viewBasicCourseInformation,0,7);
         viewBasicCourseInformation.setMinWidth(600);
         
@@ -68,6 +71,17 @@ public class RegistrationMenu {
         grid.add(registrationAgreement,0,8);
         registrationAgreement.setMinWidth(600);
         
+        Button logOut = new Button("Logout");
+        grid.add(logOut, 0, 9);
+        logOut.setMinWidth(600);
+        
+        logOut.setOnAction(new EventHandler<ActionEvent>(){
+        	public void handle(ActionEvent ae){
+        		window.close();
+        		new LogIn().display();
+        		
+        	}
+        });
         grid.setVgap(10);
         grid.setAlignment(Pos.CENTER);
         grid.setMinWidth(600);
