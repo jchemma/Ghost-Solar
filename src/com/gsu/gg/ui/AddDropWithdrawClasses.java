@@ -1,11 +1,18 @@
 package com.gsu.gg.ui;
+import com.gsu.gg.dao.RegistrationDAO;
+import com.gsu.gg.manager.RegistrationManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.gsu.gg.to.Course;
+import com.gsu.gg.to.CourseSection;
 import com.gsu.gg.to.User;
+import java.util.Collection;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,81 +37,81 @@ import javafx.stage.Stage;
 public class AddDropWithdrawClasses{
 	
 	User user;
-	ObservableList<Course> course = FXCollections.emptyObservableList();
-	
+	ObservableList<CourseSection> course = FXCollections.emptyObservableList();
+        
 	public AddDropWithdrawClasses(User user){
-		this.user = user;;
-//		for(int crn : user.getCRN()){
-//			Course c = new Course(crn);
-//			course.add(c);
-//		}
-		
-		
+            	this.user = user;
 	}
     
     public void display() {
+            try {
+                List<CourseSection> courseList = RegistrationManager.getCourseSectionsForUser(user.getEmailAddress());
+                course.addAll(courseList);
+            } catch (Exception ex) {
+                Logger.getLogger(AddDropWithdrawClasses.class.getName()).log(Level.SEVERE, null, ex);
+            }
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date date = new Date();
         Stage window = new Stage();
         //Table
-        TableView<Course> table = new TableView<Course>();
+        TableView<CourseSection> table = new TableView<CourseSection>();
         //Columns
         double columnWidth = 67;
         TableColumn statusColumn = new TableColumn("Status");
         statusColumn.setPrefWidth(columnWidth);
-        statusColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("status"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("status"));
         
         TableColumn actionColumn = new TableColumn("Action");
         actionColumn.setPrefWidth(columnWidth);
-        actionColumn.setCellValueFactory(new PropertyValueFactory<Course, ComboBox> ("action"));
+        actionColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, ComboBox> ("action"));
         
         TableColumn crnColumn = new TableColumn("CRN");
         crnColumn.setPrefWidth(columnWidth);
-        crnColumn.setCellValueFactory(new PropertyValueFactory<Course, Integer> ("crn"));
+        crnColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, Integer> ("crn"));
         
         TableColumn subjectColumn = new TableColumn("Subject");
         subjectColumn.setPrefWidth(columnWidth);
-        subjectColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("subject"));
+        subjectColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("subject"));
         
         TableColumn courseColumn = new TableColumn("Course");
         courseColumn.setPrefWidth(columnWidth);
-        courseColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("course"));
+        courseColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("course"));
         
         TableColumn sectionColumn = new TableColumn("Section");
         sectionColumn.setPrefWidth(columnWidth);
-        sectionColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("section"));
+        sectionColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("section"));
         
-        TableColumn daysColumn = new TableColumn("Days");
-        daysColumn.setPrefWidth(columnWidth);
-        daysColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("days"));
+//        TableColumn daysColumn = new TableColumn("Days");
+//        daysColumn.setPrefWidth(columnWidth);
+//        daysColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("days"));
         
         TableColumn timeColumn = new TableColumn("Time");
         timeColumn.setPrefWidth(columnWidth);
-        timeColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("time"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("time"));
         
         TableColumn levelColumn = new TableColumn("Level");
         levelColumn.setPrefWidth(columnWidth);
-        levelColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("level"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("level"));
         
         TableColumn creditHoursColumn = new TableColumn("Credit Hours");
         creditHoursColumn.setPrefWidth(columnWidth);
-        creditHoursColumn.setCellValueFactory(new PropertyValueFactory<Course, Integer> ("credit hours"));
+        creditHoursColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, Integer> ("creditHours"));
         
-        TableColumn gradeModeColumn = new TableColumn("Grade Mode");
-        gradeModeColumn.setPrefWidth(columnWidth);
-        gradeModeColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("grade mode"));
+//        TableColumn gradeModeColumn = new TableColumn("Grade Mode");
+//        gradeModeColumn.setPrefWidth(columnWidth);
+//        gradeModeColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("grade mode"));
         
-        TableColumn titleColumn = new TableColumn("Title");
-        titleColumn.setPrefWidth(columnWidth);
-        titleColumn.setCellValueFactory(new PropertyValueFactory<Course, String> ("title"));
+//        TableColumn titleColumn = new TableColumn("Title");
+//        titleColumn.setPrefWidth(columnWidth);
+//        titleColumn.setCellValueFactory(new PropertyValueFactory<CourseSection, String> ("title"));
         
         table.setItems(course);
         
         //add columns to table
         table.getColumns().addAll(statusColumn, actionColumn, crnColumn, 
-                subjectColumn, courseColumn, sectionColumn, daysColumn, 
-                timeColumn, levelColumn, creditHoursColumn, gradeModeColumn, 
-                titleColumn);
+                subjectColumn, courseColumn, sectionColumn, /*daysColumn,*/ 
+                timeColumn, levelColumn, creditHoursColumn/*, gradeModeColumn,*/
+                /*titleColumn*/);
         
         //Labels
         //heading
