@@ -1,4 +1,5 @@
 package com.gsu.gg.ui;
+
 import java.io.IOException;
 
 import com.gsu.gg.to.User;
@@ -12,15 +13,16 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class RegistrationMenu {
-	
+
 	User user;
-	
-	public RegistrationMenu(User user){
+
+	public RegistrationMenu(User user) {
 		this.user = user;
 	}
-	
-    Stage window;
-    public Stage display(){
+
+	Stage window;
+
+	public Stage display(){
         Stage window = new Stage();
         GridPane grid = new GridPane();
         
@@ -47,7 +49,12 @@ public class RegistrationMenu {
         lookUpClassesToAdd.setMinWidth(600);
         
         Button buyTextBooksOnline = new Button("Buy Textbooks Online");
-        buyTextBooksOnline.setOnAction(e -> openWebpage("http://www.bkstr.com/georgiastatestore/home"));
+        buyTextBooksOnline.setOnAction(new EventHandler<ActionEvent>(){
+        	public void handle(ActionEvent ae){
+        	openWebpage("https://www.youtube.com/");
+        	}
+        });
+        
         grid.add(buyTextBooksOnline,0,3);
         buyTextBooksOnline.setMinWidth(600);
         
@@ -92,12 +99,12 @@ public class RegistrationMenu {
         window.show();
         return window;
     }
-    
-    public static void openWebpage(String url) {
-    try {
-        new ProcessBuilder("x-www-browser", url).start();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
+
+	public static void openWebpage(String url) {
+		try {
+			new ProcessBuilder("x-www-browser", url).start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

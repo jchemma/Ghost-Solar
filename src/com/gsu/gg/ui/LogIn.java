@@ -3,12 +3,15 @@ package com.gsu.gg.ui;
 import com.gsu.gg.manager.RegistrationManager;
 import com.gsu.gg.to.User;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -45,6 +48,41 @@ public class LogIn{
             }
             window.close();
         });
+        
+        userNameField.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                	try {
+                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    window.close();
+                }
+            }
+        });
+        
+        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                	try {
+                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    window.close();
+                }
+            }
+        });
+        
         grid.add(submit,0,2);
         Button cancel = new Button("Cancel");
         cancel.setOnAction(e ->System.exit(0));
