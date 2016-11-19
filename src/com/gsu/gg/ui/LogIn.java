@@ -49,6 +49,23 @@ public class LogIn{
             window.close();
         });
         
+        submit.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                	try {
+                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    window.close();
+                }
+            }
+        });
+        
         userNameField.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
             public void handle(KeyEvent ke)
@@ -87,6 +104,23 @@ public class LogIn{
         Button cancel = new Button("Cancel");
         cancel.setOnAction(e ->System.exit(0));
         grid.add(cancel,1,2);
+        
+        cancel.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                	try {
+                		System.exit(0);
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    window.close();
+                }
+            }
+        });
         
         Scene scene = new Scene(grid, 300, 150);
         window.setScene(scene);
