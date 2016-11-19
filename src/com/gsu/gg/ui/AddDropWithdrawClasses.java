@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -140,6 +142,21 @@ public class AddDropWithdrawClasses{
         Button submitChanges = new Button("Submit Changes");
         Button classSearch = new Button("Class Search");
         Button reset = new Button("Reset");
+        
+        //Set on action for reset button
+        reset.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				 crn1.clear();
+				 crn2.clear();
+				 crn3.clear();
+				 crn4.clear();
+				 crn5.clear();
+				 crn6.clear();
+				 crn7.clear();
+				 crn8.clear();
+			}
+		});
+
 
         //miscallaneous labels
         Label totalCreditHoursLabel = new Label("Total Credit Hours: ");
