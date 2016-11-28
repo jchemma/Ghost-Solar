@@ -29,6 +29,14 @@ public class RegistrationManager {
 	
 		return user;
 	}
+    
+    public static void createCourse(Course course) throws Exception{
+        try{
+            RegistrationDAO.createCourse(course);
+        }catch(Exception e){
+            throw new Exception("Unable to create course.", e);
+        }
+    }
 	
 	public static List<CourseSection> getCourseSectionsForUser(String user) throws Exception {
 		return RegistrationDAO.getCoursesForUser(user);

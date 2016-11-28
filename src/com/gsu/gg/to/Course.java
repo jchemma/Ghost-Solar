@@ -6,18 +6,18 @@ public class Course {
 	private int creditHours;
 	private String description;
 	private Course[] prerequisites;
+        private String days;
 	
 	public Course(int crn){
 		this.crn = crn;
-		
 	}
 	
-	public Course(int crn, String name, int creditHours, String description, Course[] prerequsites){
+	public Course(int crn, String name, int creditHours, String description, String days){
 		this.crn = crn;
 		this.name = name;
 		this.creditHours = creditHours;
 		this.description = description;
-		this.prerequisites = prerequisites;
+                this.days = days;
 	}
 
 	public int getCrn() {

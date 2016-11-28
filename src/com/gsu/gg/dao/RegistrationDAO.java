@@ -159,4 +159,8 @@ public class RegistrationDAO {
         }
         return courseList;
     }
+
+    public static void createCourse(Course course) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -5,6 +5,8 @@
  */
 package com.gsu.gg.ui.admin;
 
+import com.gsu.gg.manager.RegistrationManager;
+import com.gsu.gg.to.Course;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,40 +27,64 @@ import javafx.stage.Stage;
  */
 class CreateNewClass {
 
-    private final String filePath = "/home/jchemma/NetBeansProjects/RegistrationDemo/src/util/ClassDatabase";
-
     void display() {
         Stage window = new Stage();
         window.setTitle("Class Creation");
         
+        TextField name = new TextField();
+        name.setPromptText("Course Name");
+        
         TextField crn = new TextField();
         crn.setPromptText("CRN Number");
+        
         TextField subject = new TextField();
         subject.setPromptText("Subject");
+        
+        TextArea description = new TextArea();
+        description.setPromptText("Description...");
+        
         TextField courseNumber = new TextField();
         courseNumber.setPromptText("Course Number");
+        
         TextField sectionNumber = new TextField();
         sectionNumber.setPromptText("Initial Section Number");
+        
         TextField creditHours = new TextField();
         creditHours.setPromptText("Credit Hours");
+        
         CheckBox m = new CheckBox("Monday");
         CheckBox t = new CheckBox("Tuesday");
         CheckBox w = new CheckBox("Wednesday");
         CheckBox r = new CheckBox("Thursday");
         CheckBox f = new CheckBox("Friday");
         CheckBox s = new CheckBox("Saturday");
+        
         HBox checkBoxLayout = new HBox();
+        
         checkBoxLayout.getChildren().addAll(m,t,w,r,f,s);
+        
         TextField time = new TextField();
         time.setPromptText("Time Available");
+        
         TextField capacity = new TextField();
         capacity.setPromptText("Capacity");
+        
         TextField location = new TextField();
         location.setPromptText("Location");
+        
         VBox layout = new VBox();
         
         Button createNewClass = new Button("Create New Class");
-        createNewClass.setOnAction(e-> writetoClassDatabase(crn.getText()+","+subject.getText()+","+courseNumber.getText()+","+sectionNumber.getText()+","+creditHours.getText()+","+availableDays(m,t,w,r,f,s)+","+time.getText()+","+capacity.getText()+","+location.getText()));
+        createNewClass.setOnAction(e-> {
+            int classCRN = Integer.parseInt(crn.getText());
+            String className = name.getText();
+            int classCreditHours = Integer.parseInt(creditHours.getText());
+            String classDescription = description.getText();
+            String days = availableDays(m,t,w,r,f,s);
+            Course course = new Course(classCRN, className, classCreditHours, classDescription,
+            days);
+            RegistrationManager.createCourse(course);
+        });
         
         Button cancel = new Button("Cancel");
         layout.getChildren().addAll(crn, subject, courseNumber, sectionNumber, creditHours,checkBoxLayout, time, capacity, location);
@@ -65,16 +92,6 @@ class CreateNewClass {
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.show();
-    }
-    
-    private void writetoClassDatabase(String classInfo){
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-            writer.append(classInfo);
-            writer.newLine();
-        } catch (IOException ex) {
-            Logger.getLogger(CreateNewClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     private String availableDays(CheckBox...args){
