@@ -1,5 +1,7 @@
 package com.gsu.gg.dao;
 
+import com.gsu.gg.to.Course;
+import com.gsu.gg.to.CourseSearch;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +28,8 @@ public class RegistrationDAO {
 
 	private static final String GET_COURSES_FOR_USERS = "SELECT a.CRN, a.Name, a.Credit_Hours, a.Description, a.Department, a.Prerequisites, a.SECTION_ID, a.DAY_OF_WEEK, a.CLASS_TIME, a.STATUS "
 			+ "FROM course a, " + "user_course b " + "WHERE a.CRN = B.CRN " + "AND b.user_id = ? ";
+        
+        private static final String GET_COURSES_FOR_SEARCH = "";
 
 	public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException {
 
@@ -144,4 +148,8 @@ public class RegistrationDAO {
             statement.executeUpdate();
                 connection.close();
 	}
+
+    public static List<Course> getSearchCourses(CourseSearch search) {
+        return new ArrayList();
+    }
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import com.gsu.gg.to.User;
+import com.gsu.gg.ui.Main;
 
 /**
  *
@@ -37,7 +38,13 @@ public class AdminMenu {
         Button createNewSection = new Button("Create New Section");
         createNewSection.setOnAction(e -> new CreateSection().display());
         
-        layout.getChildren().addAll(createNewUser, createNewClass, createNewSection);
+        Button logout = new Button("Logout");
+        logout.setOnAction(e -> {
+            new Main().start(new Stage());
+            window.close();
+        });
+        
+        layout.getChildren().addAll(createNewUser, createNewClass, createNewSection, logout);
         
         Scene scene = new Scene(layout);
         window.setScene(scene);

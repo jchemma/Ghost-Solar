@@ -126,6 +126,8 @@ public class LogIn{
         bBox.setAlignment(Pos.CENTER);
         //add HBox to grid.
         grid.add(bBox, 0, 4);
+        
+        window.setOnCloseRequest(e -> System.exit(0));
 
         cancel.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
@@ -149,8 +151,6 @@ public class LogIn{
         window.setScene(scene);
         window.showAndWait();
         return user!=null;
-
-
 
     }
     public User getUser(){

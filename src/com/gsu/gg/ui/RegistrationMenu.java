@@ -85,7 +85,7 @@ public class RegistrationMenu {
         logOut.setOnAction(new EventHandler<ActionEvent>(){
         	public void handle(ActionEvent ae){
         		window.close();
-        		new LogIn().display();
+        		new Main().start(new Stage());
         		
         	}
         });

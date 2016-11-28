@@ -1,22 +1,18 @@
 package com.gsu.gg.ui;
 
-import com.gsu.gg.to.User;
-
-import javafx.application.Application;
+import com.gsu.gg.to.CourseSearch;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.*;
 
 public class LookUpClassesToAdd {
 
-	ListView<String> lvDegree, lvSubject, lvCampus, parTerm, instr, crsType;
+	ListView<String> lvDegree, lvSubject, parTerm, instr, crsType;
 	TextField crsNum, title, credRange, credRange2;
 	ChoiceBox sHour, eHour, sMinute, eMinute, sAP, eAP;
 	CheckBox cbMon, cbTue, cbWed, cbThur, cbFri, cbSat, cbSun;
@@ -24,6 +20,7 @@ public class LookUpClassesToAdd {
 	Label degree, subject, crsNumLab, titleLab, crdRan, camLab, parTLab;
 	Label instLab, crsTypLab, hourS, hourE, minS, minE, apS, apE;
 	Label lDays, sTime, eTime;
+        CourseSearch search;
 
 	// public void display() {
 	public void display() {
@@ -78,7 +75,7 @@ public class LookUpClassesToAdd {
 		// ListView<String> lvDegree, lvSubject, lvCampus, parTerm, instr,
 		// crsType
 		// ListView<String> for Degree types.
-		lvDegree = new ListView<String>();
+		lvDegree = new ListView<>();
 		ObservableList<String> degItems = FXCollections.observableArrayList(
 				"Associates (2-year undergraduate students)", "Bachelors(4-year undergraduate students",
 				"Graduate (Graduate level students");
@@ -87,7 +84,7 @@ public class LookUpClassesToAdd {
 		lvDegree.setMaxSize(250, 75);
 
 		// ListView<String> for Subject types.
-		lvSubject = new ListView<String>();
+		lvSubject = new ListView<>();
 		ObservableList<String> subItems = FXCollections.observableArrayList("ACCOUNTING", "BIOLOGY", "CHEMISTRY",
 				"COMPUTER SCIENCE", "DRAWING AND PAINTING", "ECONOMICS", "FINANCE", "GEOLOGY", "HISTORY",
 				"INTERIOR DESIGN", "JOURNALISM", "SPANISH", "SPEECH COMMUNICATION", "STATISTICS", "kINESIOLOGY",
@@ -97,16 +94,16 @@ public class LookUpClassesToAdd {
 		lvSubject.setPrefHeight(100);
 
 		// ListView<String> for Campus
-		lvCampus = new ListView<String>();
-		ObservableList<String> locItems = FXCollections.observableArrayList("All", "Alpharetta-Associates courses",
-				"Atlanta", "Foreign Campus");
-		lvCampus.setItems(locItems);
-		lvCampus.setPrefHeight(100);
-		lvCampus.setMinSize(200, 50);
-		lvCampus.setMaxSize(200, 50);
+//		lvCampus = new ListView<>();
+//		ObservableList<String> locItems = FXCollections.observableArrayList("All", "Alpharetta-Associates courses",
+//				"Atlanta", "Foreign Campus");
+//		lvCampus.setItems(locItems);
+//		lvCampus.setPrefHeight(100);
+//		lvCampus.setMinSize(200, 50);
+//		lvCampus.setMaxSize(200, 50);
 
 		// ListView<String> for Terms
-		parTerm = new ListView<String>();
+		parTerm = new ListView<>();
 		ObservableList<String> termItems = FXCollections.observableArrayList("All", "Exception (All Terms)",
 				"Full Term(Fall or Spring", "Mini-mester 1 (Fall or Spring)", "Mini-mester 2 (Fall or Spring)");
 		parTerm.setItems(termItems);
@@ -114,7 +111,7 @@ public class LookUpClassesToAdd {
 		parTerm.setMaxSize(200, 75);
 
 		// ListView<String> for Instructors
-		instr = new ListView<String>();
+		instr = new ListView<>();
 		ObservableList<String> insItems = FXCollections.observableArrayList("Jerome, Key", "Instructor, Your F.",
 				"Bhola, Jaman L.");
 		instr.setItems(insItems);
@@ -122,7 +119,7 @@ public class LookUpClassesToAdd {
 		instr.setMaxSize(150, 50);
 
 		// ListView<String> for course type.
-		crsType = new ListView<String>();
+		crsType = new ListView<>();
 		ObservableList<String> crsItems = FXCollections.observableArrayList("All", "Critical Thinking Thru Writing",
 				"Honors", "Hybrid/Partially Online", "Online", "Supplemental Instruction");
 		crsType.setItems(crsItems);
@@ -183,6 +180,27 @@ public class LookUpClassesToAdd {
 		// Button secSearch, reset, exit;
 		// XCreate buttons
 		secSearch = new Button("Section Search");
+                secSearch.setOnAction(e -> {
+                    String degreeLevel = lvDegree.getSelectionModel().getSelectedItem();
+                    String subject = lvSubject.getSelectionModel().getSelectedItem();
+                    String courseNumber = crsNum.getText();
+                    String titleValue = title.getText();
+                    String credits = credRange.getText();
+                    String partOfTerm = parTerm.getSelectionModel().getSelectedItem();
+                    String instructor = instr.getSelectionModel().getSelectedItem();
+                    String courseType = crsType.getSelectionModel().getSelectedItem();
+                    String hourStart = sHour.getValue().toString();
+                    String hourEnd = eHour.getValue().toString();
+                    String minuteStart = sMinute.getValue().toString();
+                    String minuteEnd = eMinute.getValue().toString();
+                    String  ampmStart = apS.getText();
+                    String ampmEnd = apE.getText();
+                    String days = getDays();
+                    
+                    search = new CourseSearch(degreeLevel, subject, 
+                            courseNumber, titleValue, credits, partOfTerm, instructor,
+                    courseType, hourStart, hourEnd, minuteStart, minuteEnd, ampmStart, ampmEnd, days);
+                });
 		reset = new Button("Reset");
 		exit = new Button("Back");
 
@@ -228,7 +246,6 @@ public class LookUpClassesToAdd {
 				 //lvDegree, lvSubject, lvCampus, parTerm, instr, crsType
 				lvDegree.setSelectionModel(null);
 				lvSubject.setSelectionModel(null);
-				lvCampus.setSelectionModel(null);
 				parTerm.setSelectionModel(null);
 				instr.setSelectionModel(null);
 				crsType.setSelectionModel(null);
@@ -258,7 +275,6 @@ public class LookUpClassesToAdd {
 		gP.setHgap(35);
 		gP.setVgap(20);
 		gP.add(camLab, 0, 0);
-		gP.add(lvCampus, 1, 0);
 		gP.add(parTLab, 0, 1);
 		gP.add(parTerm, 1, 1);
 		gP.add(instLab, 2, 0);
@@ -277,5 +293,29 @@ public class LookUpClassesToAdd {
 
 		lookUp.show();
 	}
+        
+        private String getDays(){
+            String result = "";
+            if(cbMon.isSelected()){
+                result += "M";
+            }
+            if(cbTue.isSelected()){
+                result += "T";
+            }
+            if(cbWed.isSelected()){
+                result += "W";
+            }
+            if(cbThur.isSelected()){
+                result += "R";
+            }
+            if(cbFri.isSelected()){
+                result += "F";
+            }
+            if(cbSat.isSelected()){
+                result += "S";
+            }
+            
+            return result;
+        }
 
 }
