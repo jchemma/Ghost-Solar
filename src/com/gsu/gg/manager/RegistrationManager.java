@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.gsu.gg.dao.RegistrationDAO;
+import com.gsu.gg.to.Course;
+import com.gsu.gg.to.CourseSearch;
 import com.gsu.gg.to.CourseSection;
 import com.gsu.gg.to.User;
 
@@ -104,4 +106,13 @@ public class RegistrationManager {
 			e.printStackTrace();
 		}
 	}
+        
+        public static List<Course> getSearchCourses(CourseSearch search) throws Exception{
+            try{
+                List<Course> course= RegistrationDAO.getSearchCourses(search);
+                return course;
+            }catch(Exception e){
+                throw new Exception("Unable to create Search",e);
+            }
+        }
 }
