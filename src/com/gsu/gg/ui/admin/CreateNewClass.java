@@ -83,7 +83,11 @@ class CreateNewClass {
             String days = availableDays(m,t,w,r,f,s);
             Course course = new Course(classCRN, className, classCreditHours, classDescription,
             days);
-            RegistrationManager.createCourse(course);
+            try {
+                RegistrationManager.createCourse(course);
+            } catch (Exception ex) {
+                Logger.getLogger(CreateNewClass.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         Button cancel = new Button("Cancel");
