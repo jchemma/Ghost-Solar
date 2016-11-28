@@ -143,6 +143,10 @@ public class LogIn{
                 }
             }
         });
+        
+        //add two Hyperlink buttons Create new Account and forgot Password
+        //Contained in a VBox to add to the grid
+        
 
         Scene scene = new Scene(grid, 300, 275);
         scene.getStylesheets().add("com/gsu/gg/ui/loginStyle.css");

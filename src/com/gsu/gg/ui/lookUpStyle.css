@@ -1,0 +1,34 @@
+/*controlStyle.css */
+
+.root{
+	-fx-background-color: #E5E9E9
+}
+
+.separator {
+    -fx-background-color: #e79423;
+    -fx-background-radius: 2;
+}
+
+#Heading-text{
+	-fx-underline: true;
+	-fx-text-fill: linear-gradient(to bottom right, red, black);
+	-fx-font-size: 40px;
+	-fx-font-weight: bold;
+}
+
+.label {
+	-fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#003090, #2E61C7);
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#2E61C7, #003090);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
