@@ -115,8 +115,7 @@ public class AddDropWithdrawClasses{
                 timeColumn, levelColumn, creditHoursColumn/*, gradeModeColumn,*/
                 /*titleColumn*/);
 
-        //Labels
-        //heading
+        //Labels heading
         Label currentScheduleLabel = new Label("Current Schedule");
         currentScheduleLabel.setFont(new Font("Arial", 20));
 
@@ -142,7 +141,8 @@ public class AddDropWithdrawClasses{
         Button submitChanges = new Button("Submit Changes");
         Button classSearch = new Button("Class Search");
         Button reset = new Button("Reset");
-        
+        Button back = new Button("Back");
+
         //Set on action for reset button
         reset.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
@@ -194,8 +194,10 @@ public class AddDropWithdrawClasses{
 
         //layout for buttons
         HBox buttonLayout = new HBox();
-        buttonLayout.getChildren().addAll(submitChanges, classSearch, reset);
-
+        buttonLayout.getChildren().addAll(submitChanges, classSearch, reset, back);
+        buttonLayout.setPadding(new Insets(10, 0, 0, 0));
+        buttonLayout.setSpacing(10);
+        
         //layout for entire page
         VBox pageLayout = new VBox();
         pageLayout.getChildren().addAll(currentScheduleLabel, table,

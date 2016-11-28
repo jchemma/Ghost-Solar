@@ -43,6 +43,11 @@ public class LookUpClassesToAdd {
 
 		// Set scene on the stage.
 		lookUp.setScene(myScene);
+		lookUp.setMinHeight(680);
+		lookUp.setMaxHeight(680);
+		lookUp.setMinWidth(750);
+		lookUp.setMaxWidth(750);
+
 
 		// Create Label names
 		degree = new Label("Degree:");
@@ -186,12 +191,11 @@ public class LookUpClassesToAdd {
 		reset = new Button("Reset");
 		exit = new Button("Back");
 
-		/**
-		 * Handle the action events for the First button.
-		 * secSearch.setOnAction(new EventHandler<ActionEvent>(){ public void
-		 * handle(ActionEvent ae) { open new window new
-		 * LookUpClassTable(user).display(); } });
-		 **/
+
+		  //Handle the action events for the First button.
+		 // secSearch.setOnAction(new EventHandler<ActionEvent>(){ public void
+		  //handle(ActionEvent ae) {new LookUpClassesToAddResults().display(); } });
+
 
 		// Handle the action event for the exit button.
 		exit.setOnAction(new EventHandler<ActionEvent>() {
@@ -236,12 +240,11 @@ public class LookUpClassesToAdd {
 		});
 
 		HBox bBox = new HBox();
-		bBox.setAlignment(Pos.CENTER);
+		bBox.setAlignment(Pos.BASELINE_RIGHT);
 		bBox.setMaxWidth(200);
 		bBox.setMinWidth(200);
 		GridPane bGP = new GridPane();
 		bGP.setHgap(10);
-		bGP.add(secSearch, 4, 0);
 		bGP.add(exit, 5, 0);
 		bBox.getChildren().add(bGP);
 
@@ -251,7 +254,8 @@ public class LookUpClassesToAdd {
 		bBox2.setMinWidth(200);
 		GridPane bGP2 = new GridPane();
 		bGP2.setHgap(10);
-		bGP2.add(reset, 0, 0);
+		bGP2.add(secSearch, 0, 0);
+		bGP2.add(reset, 1, 0);
 
 		GridPane gP = new GridPane();
 		gP.setPadding(new Insets(20, 0, 0, 30));
@@ -273,7 +277,21 @@ public class LookUpClassesToAdd {
 		gP.add(bBox, 3, 7, 2, 1);
 		gP.add(bGP2, 0, 7, 2, 1);
 
-		rootNode.getChildren().addAll(controlla, fCon, gP);
+		VBox tBox = new VBox(10);
+		tBox.setPadding(new Insets(10,0,0,0));
+
+		Separator sLine = new Separator();
+		sLine.setPrefSize(150, 5);
+
+		myScene.getStylesheets().add("com/gsu/gg/ui/lookUpStyle.css");
+
+		Label tLabel = new Label("Class Schedule Search");
+		tLabel.setId("Heading-text");
+		tBox.getChildren().addAll(tLabel, sLine);
+		tBox.setAlignment(Pos.CENTER);
+
+		rootNode.getChildren().addAll(tBox, controlla, fCon, gP);
+		rootNode.setPadding(new Insets(0,10,0,10));
 
 		lookUp.show();
 	}
