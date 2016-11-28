@@ -29,7 +29,7 @@ public class RegistrationDAO {
 	private static final String GET_COURSES_FOR_USERS = "SELECT a.CRN, a.Name, a.Credit_Hours, a.Description, a.Department, a.Prerequisites, a.SECTION_ID, a.DAY_OF_WEEK, a.CLASS_TIME, a.STATUS "
 			+ "FROM course a, " + "user_course b " + "WHERE a.CRN = B.CRN " + "AND b.user_id = ? ";
         
-        private static final String GET_COURSES_FOR_SEARCH = "";
+        private static final String GET_COURSES_FOR_SEARCH = "SELECT * FROM course WHERE ";
 
 	public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException {
 
@@ -149,7 +149,14 @@ public class RegistrationDAO {
                 connection.close();
 	}
 
-    public static List<Course> getSearchCourses(CourseSearch search) {
-        return new ArrayList();
+    public static List<Course> getSearchCourses(CourseSearch search) throws ClassNotFoundException, SQLException {
+        List<Course> courseList = new ArrayList<>();
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(GET_COURSES_FOR_SEARCH);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next()){
+            
+        }
+        return courseList;
     }
 }

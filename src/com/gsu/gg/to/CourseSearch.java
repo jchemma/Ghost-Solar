@@ -28,6 +28,10 @@ public class CourseSearch {
     private String ampmEnd;
     private String days;
     
+    public CourseSearch(){
+        
+    }
+    
     public CourseSearch(String degree, String subject, String courseNumber,
             String title, String credits, String partOfTerm, String instructor,
             String courseType, String hourStart, String hourEnd, String minuteStart,
