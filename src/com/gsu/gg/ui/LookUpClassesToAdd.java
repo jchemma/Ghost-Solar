@@ -240,12 +240,11 @@ public class LookUpClassesToAdd {
 		});
 
 		HBox bBox = new HBox();
-		bBox.setAlignment(Pos.CENTER);
+		bBox.setAlignment(Pos.BASELINE_RIGHT);
 		bBox.setMaxWidth(200);
 		bBox.setMinWidth(200);
 		GridPane bGP = new GridPane();
 		bGP.setHgap(10);
-		bGP.add(secSearch, 4, 0);
 		bGP.add(exit, 5, 0);
 		bBox.getChildren().add(bGP);
 
@@ -255,7 +254,8 @@ public class LookUpClassesToAdd {
 		bBox2.setMinWidth(200);
 		GridPane bGP2 = new GridPane();
 		bGP2.setHgap(10);
-		bGP2.add(reset, 0, 0);
+		bGP2.add(secSearch, 0, 0);
+		bGP2.add(reset, 1, 0);
 
 		GridPane gP = new GridPane();
 		gP.setPadding(new Insets(20, 0, 0, 30));
@@ -281,7 +281,7 @@ public class LookUpClassesToAdd {
 		tBox.setPadding(new Insets(10,0,0,0));
 
 		Separator sLine = new Separator();
-		sLine.setPrefSize(150, 20);
+		sLine.setPrefSize(150, 5);
 
 		myScene.getStylesheets().add("com/gsu/gg/ui/lookUpStyle.css");
 
@@ -291,6 +291,7 @@ public class LookUpClassesToAdd {
 		tBox.setAlignment(Pos.CENTER);
 
 		rootNode.getChildren().addAll(tBox, controlla, fCon, gP);
+		rootNode.setPadding(new Insets(0,10,0,10));
 
 		lookUp.show();
 	}

@@ -5,13 +5,13 @@
 }
 
 .separator {
-    -fx-background-color: #e79423;
+    -fx-background-color: linear-gradient(#2E61C7, #003090);
     -fx-background-radius: 2;
 }
 
 #Heading-text{
 	-fx-underline: true;
-	-fx-text-fill: linear-gradient(to bottom right, red, black);
+	-fx-text-fill: linear-gradient(#003090, #2E61C7);
 	-fx-font-size: 40px;
 	-fx-font-weight: bold;
 }

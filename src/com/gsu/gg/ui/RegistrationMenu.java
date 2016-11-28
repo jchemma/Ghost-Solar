@@ -107,21 +107,22 @@ public class RegistrationMenu {
 		//Create two separators
 		Separator tSep = new Separator();
 		Separator bSep = new Separator();
-		tSep.setPrefSize(600, 20);
+		tSep.setPrefSize(600, 5);
 		bSep.setPrefWidth(600);
 		
 		//Create label for heading
 		VBox head = new VBox();
 		head.setMinWidth(600);
 		head.setMaxWidth(600);
-		head.setAlignment(Pos.BASELINE_CENTER);
+		head.setAlignment(Pos.TOP_CENTER);
 		Label menuHead = new Label("Registration Menu");
+		menuHead.setPadding(new Insets(0,0,5,0));
 		head.getChildren().addAll(menuHead, tSep);
-		grid.add(menuHead, 0, 0);
+		grid.add(head, 0, 0);
 		
 		
 		
-		grid.setPadding(new Insets(10,0,10,10));
+		grid.setPadding(new Insets(0,10,10,10));
 		grid.setVgap(10);
 		grid.setAlignment(Pos.CENTER_LEFT);
 		grid.setMinWidth(600);
