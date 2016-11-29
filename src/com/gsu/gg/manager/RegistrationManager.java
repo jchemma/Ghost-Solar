@@ -117,7 +117,7 @@ public class RegistrationManager {
         
         public static List<Course> getSearchCourses(CourseSearch search) throws Exception{
             try{
-                List<Course> course= RegistrationDAO.getSearchCourses(search);
+            	List<Course> course= RegistrationDAO.getSearchCourses(search);
                 return course;
             }catch(Exception e){
                 throw new Exception("Unable to create Search",e);

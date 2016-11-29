@@ -20,7 +20,7 @@ public class LookUpClassesToAdd {
 	Label degree, subject, crsNumLab, titleLab, crdRan, camLab, parTLab;
 	Label instLab, crsTypLab, hourS, hourE, minS, minE, apS, apE;
 	Label lDays, sTime, eTime;
-        CourseSearch search;
+	CourseSearch search;
 
 	// public void display() {
 	public void display() {
@@ -45,14 +45,13 @@ public class LookUpClassesToAdd {
 		lookUp.setMinWidth(750);
 		lookUp.setMaxWidth(750);
 
-
 		// Create Label names
 		degree = new Label("Degree:");
 		subject = new Label("Subject:");
 		crsNumLab = new Label("Course Number:");
 		titleLab = new Label("Title:");
 		crdRan = new Label("Credit Range:");
-		camLab = new Label("Campus:");
+		// camLab = new Label("Campus:");
 		parTLab = new Label("Part of Term:");
 		instLab = new Label("Instructor:");
 		crsTypLab = new Label("Course Type:");
@@ -99,13 +98,15 @@ public class LookUpClassesToAdd {
 		lvSubject.setPrefHeight(100);
 
 		// ListView<String> for Campus
-//		lvCampus = new ListView<>();
-//		ObservableList<String> locItems = FXCollections.observableArrayList("All", "Alpharetta-Associates courses",
-//				"Atlanta", "Foreign Campus");
-//		lvCampus.setItems(locItems);
-//		lvCampus.setPrefHeight(100);
-//		lvCampus.setMinSize(200, 50);
-//		lvCampus.setMaxSize(200, 50);
+		// lvCampus = new ListView<>();
+		// ObservableList<String> locItems =
+		// FXCollections.observableArrayList("All", "Alpharetta-Associates
+		// courses",
+		// "Atlanta", "Foreign Campus");
+		// lvCampus.setItems(locItems);
+		// lvCampus.setPrefHeight(100);
+		// lvCampus.setMinSize(200, 50);
+		// lvCampus.setMaxSize(200, 50);
 
 		// ListView<String> for Terms
 		parTerm = new ListView<>();
@@ -185,35 +186,35 @@ public class LookUpClassesToAdd {
 		// Button secSearch, reset, exit;
 		// XCreate buttons
 		secSearch = new Button("Section Search");
-                secSearch.setOnAction(e -> {
-                    String degreeLevel = lvDegree.getSelectionModel().getSelectedItem();
-                    String subject = lvSubject.getSelectionModel().getSelectedItem();
-                    String courseNumber = crsNum.getText();
-                    String titleValue = title.getText();
-                    String credits = credRange.getText();
-                    String partOfTerm = parTerm.getSelectionModel().getSelectedItem();
-                    String instructor = instr.getSelectionModel().getSelectedItem();
-                    String courseType = crsType.getSelectionModel().getSelectedItem();
-                    String hourStart = sHour.getValue().toString();
-                    String hourEnd = eHour.getValue().toString();
-                    String minuteStart = sMinute.getValue().toString();
-                    String minuteEnd = eMinute.getValue().toString();
-                    String  ampmStart = apS.getText();
-                    String ampmEnd = apE.getText();
-                    String days = getDays();
-                    
-                    search = new CourseSearch(degreeLevel, subject, 
-                            courseNumber, titleValue, credits, partOfTerm, instructor,
-                    courseType, hourStart, hourEnd, minuteStart, minuteEnd, ampmStart, ampmEnd, days);
-                });
+		secSearch.setOnAction(e -> {
+			String degreeLevel = lvDegree.getSelectionModel().getSelectedItem();
+			String subject = lvSubject.getSelectionModel().getSelectedItem();
+			String courseNumber = crsNum.getText();
+			String titleValue = title.getText();
+			String credits = credRange.getText();
+			String partOfTerm = parTerm.getSelectionModel().getSelectedItem();
+			String instructor = instr.getSelectionModel().getSelectedItem();
+			String courseType = crsType.getSelectionModel().getSelectedItem();
+			String hourStart = sHour.getValue().toString();
+			String hourEnd = eHour.getValue().toString();
+			String minuteStart = sMinute.getValue().toString();
+			String minuteEnd = eMinute.getValue().toString();
+			String ampmStart = apS.getText();
+			String ampmEnd = apE.getText();
+			String days = getDays();
+
+			search = new CourseSearch(degreeLevel, subject, courseNumber, titleValue, credits, partOfTerm, instructor,
+					courseType, hourStart, hourEnd, minuteStart, minuteEnd, ampmStart, ampmEnd, days);
+		});
 		reset = new Button("Reset");
 		exit = new Button("Back");
 
-
-		  //Handle the action events for the First button.
-		 // secSearch.setOnAction(new EventHandler<ActionEvent>(){ public void
-		  //handle(ActionEvent ae) {new LookUpClassesToAddResults().display(); } });
-
+		// Handle the action events for the First button.
+		secSearch.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				new CourseSearchResults().display();
+			}
+		});
 
 		// Handle the action event for the exit button.
 		exit.setOnAction(new EventHandler<ActionEvent>() {
@@ -225,29 +226,29 @@ public class LookUpClassesToAdd {
 		// Handle the action even for the reset button.
 		reset.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
-				 cbMon.setSelected(false);
-				 cbTue.setSelected(false);
-				 cbWed.setSelected(false);
-				 cbThur.setSelected(false);
-				 cbFri.setSelected(false);
-				 cbSat.setSelected(false);
-				 cbSun.setSelected(false);
+				cbMon.setSelected(false);
+				cbTue.setSelected(false);
+				cbWed.setSelected(false);
+				cbThur.setSelected(false);
+				cbFri.setSelected(false);
+				cbSat.setSelected(false);
+				cbSun.setSelected(false);
 				// ChoiceBox sHour, eHour, sMinute, eMinute, sAP, eAP;
-				 sHour.getSelectionModel().clearSelection();
-				 sHour.setValue(null);
-				 eHour.getSelectionModel().clearSelection();
-				 eHour.setValue(null);
-				 sMinute.getSelectionModel().clearSelection();
-				 sMinute.setValue(null);
-				 eMinute.getSelectionModel().clearSelection();
-				 eMinute.setValue(null);
-				 sAP.getSelectionModel().clearSelection();
-				 sAP.setValue(null);
-				 eAP.getSelectionModel().clearSelection();
-				 eAP.setValue(null);
-				 crsNum.clear();
-				 title.clear();
-				 //lvDegree, lvSubject, lvCampus, parTerm, instr, crsType
+				sHour.getSelectionModel().clearSelection();
+				sHour.setValue(null);
+				eHour.getSelectionModel().clearSelection();
+				eHour.setValue(null);
+				sMinute.getSelectionModel().clearSelection();
+				sMinute.setValue(null);
+				eMinute.getSelectionModel().clearSelection();
+				eMinute.setValue(null);
+				sAP.getSelectionModel().clearSelection();
+				sAP.setValue(null);
+				eAP.getSelectionModel().clearSelection();
+				eAP.setValue(null);
+				crsNum.clear();
+				title.clear();
+				// lvDegree, lvSubject, lvCampus, parTerm, instr, crsType
 				lvDegree.setSelectionModel(null);
 				lvSubject.setSelectionModel(null);
 				parTerm.setSelectionModel(null);
@@ -278,11 +279,11 @@ public class LookUpClassesToAdd {
 		gP.setPadding(new Insets(20, 0, 0, 30));
 		gP.setHgap(35);
 		gP.setVgap(20);
-		gP.add(camLab, 0, 0);
+		// gP.add(camLab, 0, 0);
 		gP.add(parTLab, 0, 1);
 		gP.add(parTerm, 1, 1);
-		gP.add(instLab, 2, 0);
-		gP.add(instr, 3, 0);
+		gP.add(instLab, 0, 0);
+		gP.add(instr, 1, 0);
 		gP.add(crsTypLab, 2, 1);
 		gP.add(crsType, 3, 1);
 		gP.add(sTime, 0, 3);
@@ -294,7 +295,7 @@ public class LookUpClassesToAdd {
 		gP.add(bGP2, 0, 7, 2, 1);
 
 		VBox tBox = new VBox(10);
-		tBox.setPadding(new Insets(10,0,0,0));
+		tBox.setPadding(new Insets(10, 0, 0, 0));
 
 		Separator sLine = new Separator();
 		sLine.setPrefSize(150, 5);
@@ -307,33 +308,33 @@ public class LookUpClassesToAdd {
 		tBox.setAlignment(Pos.CENTER);
 
 		rootNode.getChildren().addAll(tBox, controlla, fCon, gP);
-		rootNode.setPadding(new Insets(0,10,0,10));
+		rootNode.setPadding(new Insets(0, 10, 0, 10));
 
 		lookUp.show();
 	}
-        
-        private String getDays(){
-            String result = "";
-            if(cbMon.isSelected()){
-                result += "M";
-            }
-            if(cbTue.isSelected()){
-                result += "T";
-            }
-            if(cbWed.isSelected()){
-                result += "W";
-            }
-            if(cbThur.isSelected()){
-                result += "R";
-            }
-            if(cbFri.isSelected()){
-                result += "F";
-            }
-            if(cbSat.isSelected()){
-                result += "S";
-            }
-            
-            return result;
-        }
+
+	private String getDays() {
+		String result = "";
+		if (cbMon.isSelected()) {
+			result += "M";
+		}
+		if (cbTue.isSelected()) {
+			result += "T";
+		}
+		if (cbWed.isSelected()) {
+			result += "W";
+		}
+		if (cbThur.isSelected()) {
+			result += "R";
+		}
+		if (cbFri.isSelected()) {
+			result += "F";
+		}
+		if (cbSat.isSelected()) {
+			result += "S";
+		}
+
+		return result;
+	}
 
 }
