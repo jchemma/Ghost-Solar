@@ -156,7 +156,7 @@ public class AddDropWithdrawClasses{
 				 crn8.clear();
 			}
 		});
-        
+
         //Set on action for Back button
         back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
@@ -204,7 +204,7 @@ public class AddDropWithdrawClasses{
         buttonLayout.getChildren().addAll(submitChanges, classSearch, reset, back);
         buttonLayout.setPadding(new Insets(10, 0, 0, 0));
         buttonLayout.setSpacing(10);
-        
+
         //layout for entire page
         VBox pageLayout = new VBox();
         pageLayout.getChildren().addAll(currentScheduleLabel, table,

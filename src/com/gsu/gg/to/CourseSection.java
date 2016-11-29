@@ -1,8 +1,8 @@
 package com.gsu.gg.to;
 
 public class CourseSection {
-	
-	private int crn; 
+
+	private int crn;
 	private String name;
 	private int creditHours;
 	private String description;
@@ -11,7 +11,7 @@ public class CourseSection {
 	private String dayOfTheWeek;
 	private String time;
 	private String status;
-	
+
 	public int getCrn() {
 		return crn;
 	}
@@ -134,5 +134,5 @@ public class CourseSection {
 				+ description + ", prerequisites=" + prerequisites + ", sectionID=" + sectionID + ", dayOfTheWeek="
 				+ dayOfTheWeek + ", time=" + time + ", status=" + status + "]";
 	}
-	
+
 }
