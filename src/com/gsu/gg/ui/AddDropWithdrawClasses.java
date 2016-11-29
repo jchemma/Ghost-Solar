@@ -156,6 +156,13 @@ public class AddDropWithdrawClasses{
 				 crn8.clear();
 			}
 		});
+        
+        //Set on action for Back button
+        back.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				window.close();
+			}
+		});
 
 
         //miscallaneous labels

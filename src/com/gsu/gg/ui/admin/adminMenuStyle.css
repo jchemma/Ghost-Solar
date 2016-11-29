@@ -1,0 +1,26 @@
+.root{
+	-fx-background-color: #E5E9E9
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#CD3333, #EF5656);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#EF5656, #CD3333);
+}
+
+.separator {
+    -fx-background-color: linear-gradient(#EF5656, #CD3333);
+    -fx-background-radius: 2;
+}
+
+.label {
+	-fx-font-weight: bold;
+	-fx-text-fill: linear-gradient(#CD3333, #EF5656);
+	-fx-font-size: 24px;
+}
