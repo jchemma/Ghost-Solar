@@ -40,7 +40,7 @@ public class CreateUser {
         
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
-            User user = new User(firstName.getText(), lastName.getText(), email.getText(),password.getText(),accessLevel.getValue());
+            User user = new User(firstName.getText().toLowerCase(), lastName.getText().toLowerCase(), email.getText().toLowerCase(),password.getText(),accessLevel.getValue());
             try {
                 RegistrationManager.createUser(user);
             } catch (Exception ex) {
