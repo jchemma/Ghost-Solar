@@ -16,8 +16,8 @@
    -fx-font-family: "Trebuchet MS";
    -fx-fill: #818181;
    -fx-text-fill: #800000;
-   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) ,0 , 0.0 , 0 , 0 );
-}
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) ,0 , 0.0 , 0 , 0 ); 
+   }
 
 #Welcome-text {
    -fx-font-size: 20px;

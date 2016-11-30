@@ -41,8 +41,9 @@ public class CourseSearchResults {
              List<Course> courseList = RegistrationManager.getSearchCourses(search);
              lookUpRes.addAll(courseList);
          } catch (Exception ex) {
-             Logger.getLogger(AddDropWithdrawClasses.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(CourseSearchResults.class.getName()).log(Level.SEVERE, null, ex);
          }
+		 
 		//Create a stage.
 		Stage lookResults = new Stage();
 
