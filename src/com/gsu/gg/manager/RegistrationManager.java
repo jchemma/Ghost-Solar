@@ -42,6 +42,10 @@ public class RegistrationManager {
 		return RegistrationDAO.getCoursesForUser(user);
 	}
 	
+	public static void removeUser(User user){
+		RegistrationDAO.removeUser(user);
+	}
+	
 	//Create a User
 	public static void createUser(User user) throws Exception{
 		try {
