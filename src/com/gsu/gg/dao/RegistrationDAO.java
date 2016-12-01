@@ -29,7 +29,9 @@ public class RegistrationDAO {
 	private static final String GET_COURSES_FOR_USERS = "SELECT a.CRN, a.Name, a.Credit_Hours, a.Description, a.Department, a.Prerequisites, a.SECTION_ID, a.DAY_OF_WEEK, a.CLASS_TIME, a.STATUS "
 			+ "FROM course a, " + "user_course b " + "WHERE a.CRN = B.CRN " + "AND b.user_id = ? ";
         
-        private static final String GET_COURSES_FOR_SEARCH = "SELECT * FROM course WHERE ";
+    private static final String GET_COURSES_FOR_SEARCH = "SELECT * FROM course WHERE ";
+    
+    private static final String REMOVE_USER = "DELETE * FROM USER WHERE EMAIL_ADDRESS = ?";
 
 	public static User getUser(String emailAddress) throws ClassNotFoundException, SQLException {
 
@@ -163,4 +165,17 @@ public class RegistrationDAO {
     public static void createCourse(Course course) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+	public static void removeUser(User user) {
+		 Connection connection;
+		 String email = user.getEmailAddress();
+		try {
+			connection = DBUtil.getConnection();
+			PreparedStatement statement = connection.prepareStatement(REMOVE_USER+email);
+			statement.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	     
+	}
 }
