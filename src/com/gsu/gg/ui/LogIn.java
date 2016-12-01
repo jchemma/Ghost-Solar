@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -42,7 +44,7 @@ public class LogIn{
         GridPane.setColumnSpan(userNameField, 2);
         grid.add(userNameField,0,2);
         grid.setHgap(20);
-        grid.setVgap(10);
+        grid.setVgap(5);
         grid.setPadding(new Insets(10,10,10,10));
         grid.setAlignment(Pos.CENTER);
 
@@ -50,7 +52,7 @@ public class LogIn{
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         GridPane.setColumnSpan(passwordField, 2);
-        grid.add(passwordField, 0, 3);
+        grid.add(passwordField, 0, 4);
 
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
@@ -70,7 +72,7 @@ public class LogIn{
                 if (ke.getCode().equals(KeyCode.ENTER))
                 {
                 	try {
-                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                        user = RegistrationManager.loginUser(userNameField.getText().toLowerCase(), passwordField.getText());
                     } catch (Exception e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -87,7 +89,7 @@ public class LogIn{
                 if (ke.getCode().equals(KeyCode.ENTER))
                 {
                 	try {
-                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                        user = RegistrationManager.loginUser(userNameField.getText().toLowerCase(), passwordField.getText());
                     } catch (Exception e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -104,7 +106,7 @@ public class LogIn{
                 if (ke.getCode().equals(KeyCode.ENTER))
                 {
                 	try {
-                        user = RegistrationManager.loginUser(userNameField.getText(), passwordField.getText());
+                        user = RegistrationManager.loginUser(userNameField.getText().toLowerCase(), passwordField.getText());
                     } catch (Exception e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -125,7 +127,7 @@ public class LogIn{
         bBox.getChildren().addAll(submit, cancel);
         bBox.setAlignment(Pos.CENTER);
         //add HBox to grid.
-        grid.add(bBox, 0, 4);
+        grid.add(bBox, 0, 6);
         
         window.setOnCloseRequest(e -> System.exit(0));
 
@@ -148,6 +150,12 @@ public class LogIn{
         
         //add two Hyperlink buttons Create new Account and forgot Password
         //Contained in a VBox to add to the grid
+        Hyperlink pWord	= new Hyperlink("Forgot Password?");
+        Hyperlink uName = new Hyperlink("Forgot Username?");
+        pWord.setId("Hyper-Button");
+        uName.setId("Hyper-Button");
+        grid.add(uName, 0, 3);
+        grid.add(pWord, 0, 5);
         
 
         Scene scene = new Scene(grid, 300, 275);

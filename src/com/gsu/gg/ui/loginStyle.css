@@ -1,5 +1,5 @@
 .root{
-	-fx-background-image: url("background2.jpg")
+	-fx-background-image: url("background.jpg")
 }
 
 .label {
@@ -16,7 +16,7 @@
    -fx-font-family: "Trebuchet MS";
    -fx-fill: #818181;
    -fx-text-fill: #800000;
-   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) ,0 , 0.0 , 0 , 0 ); 
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) ,0 , 0.0 , 0 , 0 );
    }
 
 #Welcome-text {
@@ -37,4 +37,12 @@
 
 .button:hover {
     -fx-background-color: linear-gradient(#EF5656, #CD3333);
+}
+
+#Hyper-Button {
+	-fx-text-fill: #004080;
+}
+
+#Hyper-Button:hover {
+	-fx-font-style:italic;
 }
