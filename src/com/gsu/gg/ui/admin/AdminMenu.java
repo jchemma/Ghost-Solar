@@ -38,13 +38,16 @@ public class AdminMenu {
 		
 		Button createNewUser = new Button("Create New User");
 		createNewUser.setOnAction(e -> new CreateUser().display());
+		
+		Button removeUser = new Button("Remove User");
+		removeUser.setOnAction(e -> new RemoveUser().display());
 
 		Button createNewClass = new Button("Create New Class");
 		createNewClass.setOnAction(e -> new CreateNewClass().display());
 
 		Button createNewSection = new Button("Create New Section");
 		createNewSection.setOnAction(e -> new CreateSection().display());
-
+		
 		Button logout = new Button("Logout");
 		logout.setOnAction(e -> {
 			new Main().start(new Stage());
@@ -63,7 +66,7 @@ public class AdminMenu {
 		// Create label for heading
 		Label menuHead = new Label("Admin Menu");
 		menuHead.setPadding(new Insets(0, 0, 5, 0));
-		layout.getChildren().addAll(menuHead, tSep, createNewUser, createNewClass, createNewSection, logout);
+		layout.getChildren().addAll(menuHead, tSep, createNewUser, removeUser, createNewClass, createNewSection, logout);
 
 		window.setMinHeight(200);
 
