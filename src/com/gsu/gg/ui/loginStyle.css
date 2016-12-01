@@ -1,5 +1,5 @@
 .root{
-	-fx-background-image: url("background2.jpg")
+	-fx-background-image: url("background.jpg")
 }
 
 .label {
@@ -37,4 +37,12 @@
 
 .button:hover {
     -fx-background-color: linear-gradient(#EF5656, #CD3333);
+}
+
+#Hyper-Button {
+	-fx-text-fill: #004080;
+}
+
+#Hyper-Button:hover {
+	-fx-font-style:italic; 
 }
