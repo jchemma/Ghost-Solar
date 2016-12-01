@@ -9,9 +9,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application{
-	
+
 	User user;
-	
+
 	public static void main(String[]args){
 		launch(args);
 	}
